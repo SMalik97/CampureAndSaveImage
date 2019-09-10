@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
     ImageView click,imageView;
     Button save;
     BitmapDrawable drawable;
-    boolean setimage=false;
 
 
     @Override
@@ -54,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         imageView =(ImageView) findViewById(R.id.imgView);
         click=(ImageView)findViewById(R.id.click) ;
         save =(Button)findViewById(R.id.save);
-
+        save.setEnabled(false);
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,9 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                if (!setimage){
-                    Toast.makeText(MainActivity.this, "Please select an image", Toast.LENGTH_SHORT).show();
-                }else {
+
                 drawable =(BitmapDrawable)imageView.getDrawable();
                 Bitmap bitmapimg =drawable.getBitmap();
                 if (isExternalStorageWritable()) {
@@ -104,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(MainActivity.this, "SDCard is not writable!", Toast.LENGTH_SHORT).show();
                 }
-                }
+
             }
         });
 
@@ -155,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             Bitmap bitmap=(Bitmap)data.getExtras().get("data");
             imageView.setImageBitmap(bitmap);
-            setimage=true;
+            save.setEnabled(true);
            // Uri uri = data.getData();
             //bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
         }catch (Exception e){
@@ -175,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 imageView.setImageBitmap(bitmap);
-                setimage=true;
+                save.setEnabled(true);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -207,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
                         switch (which) {
                             case 0:
                                 imageView.setImageResource(R.drawable.imgback);
-                                setimage=false;
+                                save.setEnabled(false);
                              break;
                         }
                     }
