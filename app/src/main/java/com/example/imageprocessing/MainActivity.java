@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.imageprocessing.R;
 
 import java.io.ByteArrayOutputStream;
@@ -53,6 +54,15 @@ public class MainActivity extends AppCompatActivity {
         imageView =(ImageView) findViewById(R.id.imgView);
         click=(ImageView)findViewById(R.id.click) ;
         save =(Button)findViewById(R.id.save);
+
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showOptions();
+            }
+        });
+
         click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
     private void saveImage(Bitmap finalBitmap) {
 
         String root = Environment.getExternalStorageDirectory().toString();
-        File myDir = new File(root + "/saved_images");
+        File myDir = new File(root + "/ImageProcess");
         myDir.mkdirs();
 
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
@@ -114,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
             finalBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
             out.flush();
             out.close();
-            Toast.makeText(getApplicationContext(), "Image saved to "+root+"/saved_images", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Image saved to "+root+"/ImageProcess", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -166,9 +176,6 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
-
         }
     }
 
@@ -185,6 +192,27 @@ public class MainActivity extends AppCompatActivity {
     private void requestCameraPermission(){
         ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA},1);
     }
+
+    public void showOptions(){
+        new MaterialDialog.Builder(this)
+                .title("Action")
+                .items(R.array.action)
+                .itemsIds(R.array.itemIds)
+                .itemsCallback(new MaterialDialog.ListCallback() {
+                    @Override
+                    public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                        switch (which) {
+                            case 0:
+                                imageView.setImageResource(R.drawable.imgback);
+                             break;
+                        }
+                    }
+                })
+                .show();
+
+    }
+
+
 
 }
 

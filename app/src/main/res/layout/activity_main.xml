@@ -41,20 +41,32 @@
 
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_marginRight="100dp"
                 android:src="@drawable/wallpaper"
                 android:id="@+id/bt1"/>
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:src="@drawable/click"
                 android:id="@+id/click"/>
         </LinearLayout>
         </LinearLayout>
 
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        app:cardElevation="3dp">
+    <ImageView android:layout_height="280dp"
+        android:layout_width="280dp"
+        android:layout_margin="5dp"
+        android:src="@drawable/imgback"
+        android:id="@+id/imgView"/>
     </androidx.cardview.widget.CardView>
 
 
@@ -70,10 +82,7 @@
         android:text="Save to Gallery"
         android:id="@+id/save"/>
 
-    <ImageView android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:layout_margin="5dp"
-        android:id="@+id/imgView"/>
+
 
 
 
