@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView click,imageView;
     Button save;
     BitmapDrawable drawable;
+    boolean setimage=false;
 
 
     @Override
@@ -93,13 +94,16 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-
+                if (!setimage){
+                    Toast.makeText(MainActivity.this, "Please select an image", Toast.LENGTH_SHORT).show();
+                }else {
                 drawable =(BitmapDrawable)imageView.getDrawable();
                 Bitmap bitmapimg =drawable.getBitmap();
                 if (isExternalStorageWritable()) {
                     saveImage(bitmapimg);
                 }else{
                     Toast.makeText(MainActivity.this, "SDCard is not writable!", Toast.LENGTH_SHORT).show();
+                }
                 }
             }
         });
@@ -151,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             Bitmap bitmap=(Bitmap)data.getExtras().get("data");
             imageView.setImageBitmap(bitmap);
+            setimage=true;
            // Uri uri = data.getData();
             //bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
         }catch (Exception e){
@@ -169,9 +174,8 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-
-
                 imageView.setImageBitmap(bitmap);
+                setimage=true;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -203,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
                         switch (which) {
                             case 0:
                                 imageView.setImageResource(R.drawable.imgback);
+                                setimage=false;
                              break;
                         }
                     }
