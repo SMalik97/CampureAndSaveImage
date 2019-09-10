@@ -6,8 +6,11 @@
     xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-
-    -<LinearLayout
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none">
+    <LinearLayout
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:layout_margin="5dp"
@@ -87,5 +90,5 @@
 
 
 </LinearLayout>
-
+</ScrollView>
 </LinearLayout>
