@@ -44,8 +44,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView click,imageView;
     Button save;
     BitmapDrawable drawable;
-    String ImagePath;
-    Uri URI;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
